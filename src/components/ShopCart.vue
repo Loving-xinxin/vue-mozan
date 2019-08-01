@@ -120,7 +120,7 @@
                 </div>
               </div>
               <div class="link">
-                <router-link to="/order">登录</router-link>
+                <router-link :to="$publicUrl +'/order'">登录</router-link>
               </div>
               <div class="sigup">
                 <span>忘记密码？</span>

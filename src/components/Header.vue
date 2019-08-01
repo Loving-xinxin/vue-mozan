@@ -2,7 +2,7 @@
   <header>
     <div class="header-inner">
       <img src="../assets/leftside.png" alt />
-      <router-link to="/">
+      <router-link :to="$publicUrl + '/'">
         <img src="../assets/logo.png" alt />
       </router-link>
       <div class="login">

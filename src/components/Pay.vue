@@ -74,7 +74,7 @@
           :class="checkedfour?'active':''"
         />
       </div>
-      <router-link to="/qr" class="zhifu">付款</router-link>
+      <router-link :to="$publicUrl + '/qr'" class="zhifu">付款</router-link>
     </div>
   </div>
 </template>

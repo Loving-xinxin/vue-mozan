@@ -156,7 +156,7 @@
         <ul class="info-top">
           <li>商品信息</li>
           <li>
-            <router-link to="/shopcart">返回购物车修改</router-link>
+            <router-link :to="$publicUrl + '/shopcart'">返回购物车修改</router-link>
           </li>
         </ul>
         <ul class="goods">
@@ -232,7 +232,7 @@
           <span>=</span>
           <span>{{goodsMoney.momeytotal}}</span>
         </div>
-        <router-link to="/pay">提交订单</router-link>
+        <router-link :to="$publicUrl +'/pay'">提交订单</router-link>
       </div>
     </div>
   </div>

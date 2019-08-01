@@ -86,7 +86,7 @@
             <br />支付完成前请不要关闭该窗口
           </p>
           <div>
-            <router-link to="/successpay">
+            <router-link :to="$publicUrl +'/successpay'">
               <span>已完成支付</span>
             </router-link>
             <span>支付遇到问题</span>

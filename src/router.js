@@ -8,39 +8,40 @@ import Pay from './components/Pay.vue';
 import Qr from './components/Qr.vue';
 import Paydone from './components/PayDone.vue';
 import SuccessPay from './components/SuccessPay.vue';
+import { PUBLICURL } from './publicurl';
 Vue.use(VueRouter);
 const routes = [
   {
     component: Main,
-    path: '/'
+    path: PUBLICURL + '/'
   },
   {
     component: Scar,
-    path: '/scar'
+    path: PUBLICURL + '/scar'
   },
   {
     component: ShopCart,
-    path: '/shopcart'
+    path: PUBLICURL + '/shopcart'
   },
   {
     component: Order,
-    path: '/order'
+    path: PUBLICURL + '/order'
   },
   {
     component: Pay,
-    path: '/pay'
+    path: PUBLICURL + '/pay'
   },
   {
     component: Qr,
-    path: '/qr'
+    path: PUBLICURL + '/qr'
   },
   {
     component: Paydone,
-    path: '/paydone'
+    path: PUBLICURL + '/paydone'
   },
   {
     component: SuccessPay,
-    path: '/successpay'
+    path: PUBLICURL + '/successpay'
   }
 ];
 

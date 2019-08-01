@@ -99,7 +99,7 @@
       </div>
       <div class="sale">
         <div>
-          <router-link to="/scar">立即订购</router-link>
+          <router-link :to="$publicUrl + '/scar'">立即订购</router-link>
         </div>
       </div>
     </div>

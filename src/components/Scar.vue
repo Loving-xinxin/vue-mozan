@@ -17,7 +17,7 @@
         <div>
           <span @click="$router.back(-1)">返回</span>
           <span>
-            <router-link to="/shopcart">去购物车结算</router-link>
+            <router-link :to="$publicUrl +'/shopcart'">去购物车结算</router-link>
           </span>
         </div>
       </div>

@@ -55,7 +55,7 @@
             <Daojishi :currentTime="100000" :startTime="10000" :endTime="10000000" class="daoji"></Daojishi>秒过期之后请刷新页面重新获取二维码
           </div>
           <img src="../assets/qr.png" alt />
-          <router-link to="/paydone">
+          <router-link :to="$publicUrl +'/paydone'">
             <div class="sao">请使用微信扫一扫扫描二维码支付！</div>
           </router-link>
         </div>
