@@ -8,8 +8,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 import 'swiper/dist/css/swiper.css';
 import router from './router';
-import { PUBLICURL } from './publicurl';
+import PUBLICURL from './publicurl';
 Vue.prototype.$publicUrl = PUBLICURL;
+
 Vue.use(VueAwesomeSwiper);
 Vue.config.productionTip = false;
 Vue.use(ElementUI);

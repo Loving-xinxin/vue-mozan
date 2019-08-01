@@ -8,7 +8,7 @@ import Pay from './components/Pay.vue';
 import Qr from './components/Qr.vue';
 import Paydone from './components/PayDone.vue';
 import SuccessPay from './components/SuccessPay.vue';
-import { PUBLICURL } from './publicurl';
+import PUBLICURL from './publicurl';
 Vue.use(VueRouter);
 const routes = [
   {

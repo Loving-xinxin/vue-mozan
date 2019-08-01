@@ -1,2 +1,2 @@
 const PUBLICURL = '/vue-mozan';
-export { PUBLICURL };
+export default PUBLICURL;

@@ -2,9 +2,7 @@
   <div class="wrap">
     <div class="inner">
       <Header />
-
       <router-view></router-view>
-
       <Footer />
     </div>
   </div>
