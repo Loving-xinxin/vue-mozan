@@ -114,8 +114,6 @@
                   <input type="text" placeholder="请输入密码" />
                 </div>
                 <div>
-                  <!-- <input type="text" placeholder="请输入验证码" />
-                  <img src="../assets/yanzheng.png" alt />-->
                   <Identify />
                 </div>
               </div>

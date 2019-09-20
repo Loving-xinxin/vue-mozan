@@ -49,30 +49,10 @@
       </div>
       <div class="paystyle">
         <span>选择付款方式</span>
-        <img
-          src="../assets/zhifubao.png"
-          alt
-          @click="payCheckedone()"
-          :class="checkedone?'active':''"
-        />
-        <img
-          src="../assets/paystyle-weixin.png"
-          alt
-          @click="payCheckedtwo()"
-          :class="checkedtwo?'active':''"
-        />
-        <img
-          src="../assets/caifutong.png"
-          alt
-          @click="payCheckedthree()"
-          :class="checkedthree?'active':''"
-        />
-        <img
-          src="../assets/wangling.png"
-          alt
-          @click="payCheckedfour()"
-          :class="checkedfour?'active':''"
-        />
+        <img src="../assets/zhifubao.png" alt />
+        <img src="../assets/paystyle-weixin.png" alt />
+        <img src="../assets/caifutong.png" alt />
+        <img src="../assets/wangling.png" alt />
       </div>
       <router-link :to="$publicUrl + '/qr'" class="zhifu">付款</router-link>
     </div>

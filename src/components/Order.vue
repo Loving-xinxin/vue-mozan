@@ -34,7 +34,7 @@
                       收货人
                     </span>
                     <span>请填写收货人！</span>
-                    <input type="text" />
+                    <input type="text" v-model="contactName" />
                   </div>
                   <div class="right">
                     <span>
@@ -42,7 +42,7 @@
                       联系电话
                     </span>
                     <span>填写的手机号格式错误！</span>
-                    <input type="text" />
+                    <input type="text" v-model="contactPhone" />
                   </div>
                 </div>
                 <div class="location">
@@ -54,21 +54,7 @@
                     <div>请填写完整的所在地区！</div>
                   </div>
                   <div>
-                    <div class="capital">
-                      <div class="block">
-                        <el-cascader v-model="value" :options="options" @change="handleChange"></el-cascader>
-                      </div>
-                    </div>
-                    <div class="city">
-                      <div class="block">
-                        <el-cascader v-model="value" :options="options" @change="handleChange"></el-cascader>
-                      </div>
-                    </div>
-                    <div class="country">
-                      <div class="block">
-                        <el-cascader v-model="value" :options="options" @change="handleChange"></el-cascader>
-                      </div>
-                    </div>
+                    <v-distpicker @selected="sel"></v-distpicker>
                   </div>
                 </div>
                 <div class="detail">
@@ -78,12 +64,12 @@
                     </span>
                     <span>请填写详细信息！</span>
                   </div>
-                  <input type="text" />
+                  <input type="text" v-model="districtDetail" />
                 </div>
                 <div class="other">
                   <div>
                     <span>地址别名</span>
-                    <input type="text" />
+                    <input type="text" v-model="districtAlias" />
                   </div>
                   <div>
                     <span>常用别名</span>
@@ -108,13 +94,8 @@
           </li>
         </ul>
         <ul class="list" v-if="address">
-          <li
-            v-for="addres in address"
-            :key="addres.id"
-            :class="addres.checkedLi?'active':''"
-            @click="checkedshouhuo(addres.id)"
-          >
-            <div class="left">
+          <li v-for="addres in address" :key="addres.id" :class="addres.checkedLi?'active':''">
+            <div class="left" @click="checkedshouhuo(addres.id)">
               <div class="user">
                 <span class="iconfont icon-caidan07"></span>
                 <span>{{addres.name}}</span>
@@ -179,7 +160,7 @@
         </ul>
       </div>
       <div class="paystyle">
-        <div>
+        <!-- <div>
           <span>支付方式</span>
           <span @click="selectPay()" :class="selectP?'active':''">
             在线支付
@@ -192,17 +173,27 @@
             普通快递
             <img src="../assets/gou .png" alt v-if="selectS" />
           </span>
+        </div>-->
+        <div>
+          <span>支付方式</span>
+          <span>在线支付</span>
+        </div>
+        <div>
+          <span>物流方式</span>
+          <span>普通快递</span>
         </div>
         <div>
           <span>发票信息</span>
-          <span @click="selectUbill()" :class="selectUb?'active':''">
+          <!-- <span @click="selectUbill()" :class="selectUb?'active':''">
             不开发票
             <img src="../assets/gou .png" alt v-if="selectUb" />
           </span>
           <span @click="selectBill()" :class="selectB?'active':''">
             开发票
             <img src="../assets/gou .png" alt v-if="selectB" />
-          </span>
+          </span>-->
+          <span>不开发票</span>
+          <span>开发票</span>
           <input type="text" placeholder="请输入个人/单位名称" />
           <span>保存</span>
         </div>
@@ -239,12 +230,17 @@
 </template>
 
 <script>
+import VDistpicker from "v-distpicker";
 import { mapState, mapMutations, mapGetters } from "vuex";
 export default {
   name: "order",
+  components: {
+    VDistpicker
+  },
   computed: {
     ...mapState({
       address: state => state.address.address,
+      bill: state => state.bill.bill,
       order: state => state.cart.order,
       selectS: state => state.address.selectS,
       selectP: state => state.address.selectP,
@@ -253,8 +249,47 @@ export default {
       gou: state => state.address.gou,
       value: state => state.address.value,
       options: state => state.address.options,
-      showAddress: state => state.address.showAddress
+      showAddress: state => state.address.showAddress,
+      addNew: state => state.createAddress.addNew,
+      contactName: state => state.createAddress.contactName,
+      contactPhone: state => state.createAddress.contactPhone,
+      district: state => state.createAddress.district,
+      districtDetail: state => state.createAddress.districtDetail,
+      districtAlias: state => state.createAddress.districtAlias,
+      newDefault: state => state.createAddress.newDefault
     }),
+    contactName: {
+      get() {
+        return this.$store.state.createAddress.contactName;
+      },
+      set(payload) {
+        this.setContactName(payload);
+      }
+    },
+    contactPhone: {
+      get() {
+        return this.$store.state.createAddress.contactPhone;
+      },
+      set(payload) {
+        this.setContactPhone(payload);
+      }
+    },
+    districtDetail: {
+      get() {
+        return this.$store.state.createAddress.districtDetail;
+      },
+      set(payload) {
+        this.setDistrictDetail(payload);
+      }
+    },
+    districtAlias: {
+      get() {
+        return this.$store.state.createAddress.districtAlias;
+      },
+      set(payload) {
+        this.setDistrictAlias(payload);
+      }
+    },
     ...mapGetters(["checkedGoods", "goodsMoney"])
   },
   methods: {
@@ -269,8 +304,22 @@ export default {
       "showdizhi",
       "checkedshouhuo",
       "changefont",
-      "showGou"
-    ])
+      "showGou",
+      "closeAddNew",
+      "createNew",
+      "setContactName",
+      "setContactPhone",
+      "setDistrict",
+      "setDistrictDetail",
+      "setDistrictAlias",
+      "transNewDefault",
+      "setDefault"
+    ]),
+    sel: function(data) {
+      this.citydata = data.province.value + data.city.value + data.area.value;
+      this.setDistrict(this.citydata);
+      console.log(this.citydata);
+    }
   }
 };
 </script>
@@ -622,7 +671,6 @@ export default {
   cursor: pointer;
 }
 .newaddress {
-  z-index: 1000000;
   width: 694px;
   margin: 0 auto;
   position: fixed;
@@ -784,5 +832,6 @@ export default {
   right: 0;
   bottom: 0;
   background-color: rgb(0, 0, 0, 0.3);
+  z-index: 1000;
 }
 </style>
